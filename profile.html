@@ -21,14 +21,15 @@
     <main class="main">
       <section class="profile">
         <img
-          src="https://source.unsplash.com/random/250x250?Person"
+          id="profile-picture"
+          src=""
           alt="Profile Picture"
           class="profile-picture"
         />
         <div class="user-info">
-          <h1>John Doe</h1>
-          <p>Email: john.doe@example.com</p>
-          <p>Location: City, Country</p>
+          <h1 id="name">John Doe</h1>
+          <p id="email">Email: john.doe@example.com</p>
+          <p id="location">Location: City, Country</p>
         </div>
       </section>
 
@@ -42,5 +43,27 @@
         </ul>
       </section>
     </main>
+
+    <script>
+      const baseUrl = "http://localhost:3000";
+      const apiRoutes = {
+        profile: `${baseUrl}/profile/me`,
+      };
+
+      const loadProfile = () => {
+        fetch(apiRoutes.profile)
+          .then((res) => res.json())
+          .then(({ name, email, location, profile_picture }) => {
+            document
+              .getElementById("profile-picture")
+              .setAttribute("src", profile_picture);
+            document.getElementById("name").innerText = name;
+            document.getElementById("email").innerText = email;
+            document.getElementById("location").innerText = location;
+          });
+      };
+
+      loadProfile();
+    </script>
   </body>
 </html>

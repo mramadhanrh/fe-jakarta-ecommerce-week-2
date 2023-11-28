@@ -25,18 +25,7 @@
         <a href="#" class="btn">Shop Now</a>
       </section>
 
-      <section class="products">
-        <!-- Product Cards Go Here -->
-        <div class="product-card">
-          <img src="product1.jpg" alt="Product 1" />
-          <h2>Product 1</h2>
-          <p>Description of Product 1.</p>
-          <span class="price">$19.99</span>
-          <button>Add to Cart</button>
-        </div>
-
-        <!-- Add more product cards dynamically here -->
-      </section>
+      <section id="product-list" class="products"></section>
     </main>
 
     <script>
@@ -49,6 +38,16 @@
         fetch(apiRoutes.productList)
           .then((res) => res.json())
           .then((res) => {
+            res.data.forEach(({ description, price, product_image, title }) => {
+              document.getElementById("product-list").innerHTML += `
+              <div class="product-card">
+                <img src="${product_image}" alt="Product 1" />
+                <h2>${title}</h2>
+                <p>${description}</p>
+                <span class="price">$${price.toLocaleString()}</span>
+                <button>Add to Cart</button>
+              </div>`;
+            });
             console.log({ res });
           });
       };
