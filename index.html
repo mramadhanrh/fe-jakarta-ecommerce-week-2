@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Your E-commerce Store</title>
+    <link rel="stylesheet" href="css/homepage.css" />
+  </head>
+
+  <body>
+    <header class="header">
+      <div class="logo">Your Logo</div>
+      <nav class="nav">
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/profile">Profile</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main class="main">
+      <section class="hero">
+        <h1>Welcome to Our Store</h1>
+        <p>Discover the best products for your needs.</p>
+        <a href="#" class="btn">Shop Now</a>
+      </section>
+
+      <section class="products">
+        <!-- Product Cards Go Here -->
+        <div class="product-card">
+          <img src="product1.jpg" alt="Product 1" />
+          <h2>Product 1</h2>
+          <p>Description of Product 1.</p>
+          <span class="price">$19.99</span>
+          <button>Add to Cart</button>
+        </div>
+
+        <!-- Add more product cards dynamically here -->
+      </section>
+    </main>
+
+    <script>
+      const baseUrl = "http://localhost:3000";
+      const apiRoutes = {
+        productList: `${baseUrl}/products/list`,
+      };
+
+      const loadProductList = () => {
+        fetch(apiRoutes.productList)
+          .then((res) => res.json())
+          .then((res) => {
+            console.log({ res });
+          });
+      };
+
+      loadProductList();
+    </script>
+
+    <footer class="footer">
+      <p>&copy; 2023 Your E-commerce Store. All rights reserved.</p>
+    </footer>
+  </body>
+</html>
