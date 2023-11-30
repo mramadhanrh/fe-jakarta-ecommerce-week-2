@@ -6,7 +6,6 @@
     <title>Your E-commerce Store</title>
     <link rel="stylesheet" href="css/homepage.css" />
   </head>
-
   <body>
     <header class="header">
       <div class="logo">Your Logo</div>
@@ -17,44 +16,42 @@
         </ul>
       </nav>
     </header>
-
     <main class="main">
       <section class="hero">
         <h1>Welcome to Our Store</h1>
         <p>Discover the best products for your needs.</p>
         <a href="#" class="btn">Shop Now</a>
       </section>
-
-      <section id="product-list" class="products"></section>
+      <section id="product-list" class="products">
+        <!-- Product Cards Go Here -->
+        <!-- Add more product cards dynamically here -->
+      </section>
     </main>
-
     <script>
       const baseUrl = "http://localhost:3000";
       const apiRoutes = {
         productList: `${baseUrl}/products/list`,
       };
-
       const loadProductList = () => {
         fetch(apiRoutes.productList)
           .then((res) => res.json())
           .then((res) => {
-            res.data.forEach(({ description, price, product_image, title }) => {
+            console.log({ res });
+            res.data.forEach(({ description, price, image, title }) => {
               document.getElementById("product-list").innerHTML += `
               <div class="product-card">
-                <img src="${product_image}" alt="Product 1" />
+                <img src="${image}" alt="Product 1" />
                 <h2>${title}</h2>
                 <p>${description}</p>
-                <span class="price">$${price.toLocaleString()}</span>
+                <span class="price">$${price?.toLocaleString()}</span>
                 <button>Add to Cart</button>
               </div>`;
             });
             console.log({ res });
           });
       };
-
       loadProductList();
     </script>
-
     <footer class="footer">
       <p>&copy; 2023 Your E-commerce Store. All rights reserved.</p>
     </footer>
